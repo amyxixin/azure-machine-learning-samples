@@ -1,8 +1,3 @@
-"""
-Simplified Batch Scoring Script for Azure ML
-Only requires: input_data, output_data, model_path
-Outputs direct model predictions without additional transformations.
-"""
 import os
 import pandas as pd
 import mlflow
@@ -23,7 +18,7 @@ def main():
 
     # Load model
     model = mlflow.sklearn.load_model(args.model_path) # if model created with sklearn
-    print("✅ Model loaded")
+    print("Model loaded")
 
     # Get input files
     if os.path.isdir(args.input_data):
@@ -51,9 +46,9 @@ def main():
         os.makedirs(args.output_data, exist_ok=True)
         output_file = os.path.join(args.output_data, "scored_results.csv")
         final_df.to_csv(output_file, index=False)
-        print(f"✅ Results saved to: {output_file}")
+        print(f"Results saved to: {output_file}")
     else:
-        print("⚠️ No results to save")
+        print("No results to save")
 
 
 if __name__ == "__main__":
