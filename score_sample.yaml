@@ -3,7 +3,7 @@ name: score_sample_component
 display_name: Simple Scoring Component
 version: 1.0
 type: command
-description: Simple scoring component - outputs direct model predictions
+description: Scoring component
 
 inputs:
   input_data:
@@ -18,8 +18,8 @@ outputs:
     type: uri_folder
     description: Scored output data path
 
-code: ./src
-environment: azureml:iGuard-env@latest
+code: .
+environment: <your environment URI>
 
 command: >-
   python score_sample.py
