@@ -1,0 +1,28 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+name: score_sample_component
+display_name: Simple Scoring Component
+version: 1.0
+type: command
+description: Simple scoring component - outputs direct model predictions
+
+inputs:
+  input_data:
+    type: uri_file
+    description: Input CSV file to score
+  model_path:
+    type: mlflow_model  
+    description: MLflow model for scoring
+
+outputs:
+  output_data:
+    type: uri_folder
+    description: Scored output data path
+
+code: ./src
+environment: azureml:iGuard-env@latest
+
+command: >-
+  python score_sample.py
+  --input_data ${{inputs.input_data}}
+  --output_data ${{outputs.output_data}}
+  --model_path ${{inputs.model_path}}
